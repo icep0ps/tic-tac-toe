@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+:root {
+
+    --red: #ED254E;
+    --black: #AE2C1E;
+    --white: #F7F7FF;
+
+}
+
+h1,
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+
+    background-color: var(--white);
+    color: white;
+}
+
+.container {
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    max-width: 700px;
+    gap: 30px;
+
+}
+
+.container >p,h1{
+
+    color: #ED254E;
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    text-align: center;
+}
+
+.board {
+    min-width: 200px;
+    min-height: 200px;
+    width: 450px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    border: 2px solid var(--red);
+    outline: var(--red) solid 3px ;
+    color: var(--black);
+}
+
+.info>p {
+    margin: 10px;
+}
+
+.current {
+
+    padding: 30px;
+    background-color: var(--red);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    border-radius: 20px;
+
+
+
+}
+
+.current>h1 {
+
+    font-size: 1.2rem;
+}
+
+.info {
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    padding: 20px;
+    height: 100px;
+    width: 190px;
+    text-align: center;
+    background-color: var(--red);
+    color: white;
+    border-radius: 20px;
+
+}
+
+.game{
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+}
