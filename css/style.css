@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
-
 :root {
 
     --red: #ED254E;
@@ -13,7 +11,7 @@
 }
 
 h1,
-p {
+p,h2 {
     margin: 0px;
     padding: 0px;
 }
@@ -36,7 +34,8 @@ body {
 
 }
 
-.container >p,h1{
+.container>p,
+h1 {
 
     color: #ED254E;
     font-family: 'Poppins', sans-serif;
@@ -45,8 +44,7 @@ body {
 }
 
 .board {
-    min-width: 200px;
-    min-height: 200px;
+
     width: 450px;
     height: 450px;
     display: grid;
@@ -64,7 +62,7 @@ body {
     font-family: 'Jost', sans-serif;
     cursor: pointer;
     border: 2px solid var(--red);
-    outline: var(--red) solid 3px ;
+    outline: var(--red) solid 3px;
     color: var(--black);
 }
 
@@ -72,23 +70,6 @@ body {
     margin: 10px;
 }
 
-.current {
-
-    padding: 30px;
-    background-color: var(--red);
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    border-radius: 20px;
-
-
-
-}
-
-.current>h1 {
-
-    font-size: 1.2rem;
-}
 
 .info {
     font-weight: bold;
@@ -104,10 +85,10 @@ body {
 
 }
 
-.game{
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
+.game {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }

@@ -1,21 +1,29 @@
+const playerOneWins = document.querySelector('.player-one')
+const currentTurn = document.querySelector('.current')
+const playerTwoWins = document.querySelector('.player-two')
+const result = document.querySelector('.result')
+let endGame = false
+
 const Gameboard = (() => {
-    const board = [null, undefined, undefined, undefined, null, null, null, undefined, undefined]
+    const board = ['', '', '', '', '', '', '', '', '']
     return { board }
 })()
-
 
 const playerFactorty = (name, move) => {
     let wins = 0
     const play = (something) => {
-        if (something.textContent == '' && gameControll.gameOver() != true) {
+        if (endGame == false) {
             Gameboard.board.splice(something.getAttribute('data-box'), 1, move)
             gameControll.printstuff()
-            gameControll.checkTurn()
-        }
-        else {
-            alert('gameover')
-            wins++
-            console.log(name + wins)
+            if (gameControll.gameOver()) {
+                result.textContent = ` Winner ! ${name}`
+                endGame = true
+            }
+            else {
+                gameControll.printstuff()
+                gameControll.swap()
+            }
+
         }
     }
 
@@ -29,15 +37,15 @@ const players = {
 
 }
 
+let currentplayer = players.player1
 const gameControll = (() => {
-    let currentplayer = players.player1
     let currentTurn = 1
-    const checkTurn = () => {
-        if (currentTurn == 0 && gameOver() != true) {
+    const swap = () => {
+        if (currentTurn == 0) {
             currentplayer = players.player1
             currentTurn++
-        } 
-        else if (currentTurn == 1 && gameOver() != true) {
+        }
+        else if (currentTurn == 1) {
             currentplayer = players.player2
             currentTurn--
         }
@@ -56,54 +64,28 @@ const gameControll = (() => {
         }
     }
 
+    let combos = [
+
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+
     const gameOver = () => {
-
-        const board = Gameboard.board;
-        if (board[0] === board[1] && board[2] === board[1]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
-        else if (board[3] === board[4] && board[5] === board[4]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
-        else if (board[6] === board[7] && board[8] === board[7]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-
-            return game
-        }
-        else if (board[2] === board[4] && board[6] === board[4]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
-        else if (board[0] === board[4] && board[8] === board[4]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
-        else if (board[0] === board[3] && board[6] === board[3]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-
-            return game
-        }
-        else if (board[1] === board[4] && board[7] === board[4]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
-        else if (board[2] === board[5] && board[8] === board[5]) {
-            let game = true
-            console.log('game over ' + currentplayer.name + ' wins')
-            return game
-        }
+        return combos.some(things => {
+            return things.every(index => {
+                return Gameboard.board[index].includes(currentplayer.move)
+            })
+        })
 
     }
 
-    return { printstuff, getGrids, checkTurn, gameOver, createBoard }
+    return { printstuff, getGrids, swap, gameOver, createBoard }
 })()
+
 
