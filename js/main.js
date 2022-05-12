@@ -2,6 +2,8 @@ const playerOneWins = document.querySelector('.player-one')
 const currentTurn = document.querySelector('.current')
 const playerTwoWins = document.querySelector('.player-two')
 const result = document.querySelector('.result')
+const restartBtn = document.querySelector('button')
+const winner = document.querySelector('#results')
 let endGame = false
 
 const Gameboard = (() => {
@@ -9,15 +11,20 @@ const Gameboard = (() => {
     return { board }
 })()
 
-const playerFactorty = (name, move) => {
+const playerFactorty = (name, move, div) => {
+    const text = div
     let wins = 0
     const play = (something) => {
         if (endGame == false) {
+
+            currentTurn.textContent = currentplayer.name
             Gameboard.board.splice(something.getAttribute('data-box'), 1, move)
             gameControll.printstuff()
             if (gameControll.gameOver()) {
-                result.textContent = ` Winner ! ${name}`
+                gameControll.addScreen()
                 endGame = true
+                wins++
+                text.textContent = wins
             }
             else {
                 gameControll.printstuff()
@@ -32,8 +39,8 @@ const playerFactorty = (name, move) => {
 
 const players = {
 
-    player1: playerFactorty('Player 1', '❌'),
-    player2: playerFactorty('Player 2', '⭕')
+    player1: playerFactorty('Player 1', '❌', playerOneWins),
+    player2: playerFactorty('Player 2', '⭕', playerTwoWins)
 
 }
 
@@ -85,7 +92,24 @@ const gameControll = (() => {
 
     }
 
-    return { printstuff, getGrids, swap, gameOver, createBoard }
+    const addScreen = () =>{
+
+        winner.classList.add('info')
+        result.textContent = ` Winner ! ${currentplayer.name}`
+    }
+
+    const restart = () => {
+        Gameboard.board = ['', '', '', '', '', '', '', '', '']
+        currentplayer = players.player1
+        endGame = false
+        winner.classList.remove('info')
+        result.textContent = ''
+        printstuff()
+        createBoard()
+    }
+    restartBtn.addEventListener('click', e => { restart() })
+
+    return { printstuff, getGrids, swap, gameOver, createBoard, addScreen }
 })()
 
 

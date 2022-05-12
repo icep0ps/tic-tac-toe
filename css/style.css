@@ -92,3 +92,16 @@ h1 {
     align-items: center;
 
 }
+
+button{
+
+border: none;
+padding: 30px;
+background-color: var(--red);
+color: white;
+font-family: 'Poppins', sans-serif;
+font-weight: bold;
+border-radius: 30px;
+cursor: pointer;
+
+}
